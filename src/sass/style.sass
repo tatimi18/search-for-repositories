@@ -9,16 +9,27 @@ html, body
 form
     display: flex
     flex-direction: column
+    align-items: center
+
+h3
+    text-align: center
 
 .input
     margin-top: 10px
     padding: 10px
+    text-align: center
     &__search
         width: 450px
     &__btn
         margin: 30px 0 50px 0
         width: 200px
         cursor: pointer
+        transition: 0.5s all
+        &:hover
+            font-weight: 600
+            background-color: #DAD7FF
+            border-color: #ffffff00
+            
 
 .invalid
     border-color: red
@@ -26,4 +37,41 @@ form
 .error
     padding-top: 5px
     color: red
+
+li
+    margin: 25px 0
+    background-color: #fff
+    padding: 20px
+    border-radius: 20px
+
+.list
+    &__link
+        text-decoration: none
+        color: #F28B9D
+        transition: 0.5s all
+        font-size: 20px
+        font-weight: 600
+        &:hover
+            padding: 5px 25px
+            color: black
+            background-color: #DAD7FF
+            border-radius: 20px
+
+    &__img
+        margin-top: 10px
+        height: 50px
+        border-radius: 50%
+        border: 8px solid #DAD7FF
+.pt10
+    padding-top: 10px
+
+    
+.span__fish
+    font-weight: 300
+.span-title
+    padding: 5px 25px
+    color: black
+    background-color: #DAD7FF
+    border-radius: 20px
+
 
