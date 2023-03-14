@@ -42,7 +42,6 @@ function removeError(elem) {
 };
 
 async function postForm(event) {
-    //отменили действие браузера по умолчанию
     event.preventDefault();
     
     if (!isValid(this)) {
@@ -59,7 +58,7 @@ async function postForm(event) {
             title.innerHTML = `Найденные репозитории по запросу <span class='span-title'>${name.repositoryName}</span>:`
         
             const data = await response.json();
-            createRepositoriesList(data)
+            createRepositoriesList(data);
 
         } else {
             alert('ошибка')
@@ -75,10 +74,8 @@ function isValid(form) {
     let invalidInputs = form.querySelectorAll('.invalid');
 
     if (errors.length != 0 || invalidInputs.length != 0) {
-        //проверка не пройдена
         return false;
     } else {
-        //проверка пройдена
         return true;
     };
 };
@@ -87,14 +84,14 @@ function clearList() {
     const listWrappers = document.querySelectorAll('.list__wrapper');
     for (let listWrapper of listWrappers) {
         listWrapper.remove()
-    }
-}
+    };
+};
 
 function createRepositoriesList(repositoriesData) {
-    const result = document.querySelector('.result')
+    const result = document.querySelector('.result');
 
     if (!repositoriesData.total_count) {
-        result.innerHTML = 'Ничего не нашлось :('
+        result.innerHTML = 'Ничего не нашлось :(';
     } else {
         result.innerHTML = '';
 
@@ -104,44 +101,44 @@ function createRepositoriesList(repositoriesData) {
         const ol = document.createElement('ol');
         ol.className = 'list__ol';
     
-        result.after(listWrapper)
+        result.after(listWrapper);
         listWrapper.append(ol);
 
         let repositories = repositoriesData.items;
     
         for (let repository of repositories) {
-            let li = document.createElement('li')
+            let li = document.createElement('li');
             li.className = 'list__li';
     
             let description = repository.description;
     
             if (!description) {
-                description = 'Нет описания'
-            }
+                description = 'Нет описания';
+            };
 
             let userAvatar = repository.owner.avatar_url;
             if (!userAvatar) {
-                userAvatar = 'https://pngimg.com/uploads/github/github_PNG88.png'
-            }
-            li.innerHTML = `
-            <a target="_blank" href="${repository.svn_url}" class="list__link">${repository.name}</a>
-            <div class="pt10 list__full-name"><span class="span__fish">Полное название:</span> ${repository.full_name}</div>
-            <img class="list__img" src="${userAvatar}">
-            <div class="pt10 list__author"><span class="span__fish">Автор:</span> ${repository.owner.login}</div>
-            <div class="pt10 list__descr"><span class="span__fish">Описание:</span> ${description}</div>
-            `
-            ol.append(li)
-        }
+                userAvatar = 'https://pngimg.com/uploads/github/github_PNG88.png';
+            };
 
-    }
-}
+            li.innerHTML = `
+                <a target="_blank" href="${repository.svn_url}" class="list__link">${repository.name}</a>
+                <div class="pt10 list__full-name"><span class="span__fish">Полное название:</span> ${repository.full_name}</div>
+                <img class="list__img" src="${userAvatar}">
+                <div class="pt10 list__author"><span class="span__fish">Автор:</span> ${repository.owner.login}</div>
+                <div class="pt10 list__descr"><span class="span__fish">Описание:</span> ${description}</div>
+            `;
+            ol.append(li);
+        };
+    };
+};
 
 function clearForm(form) {
     let elements = form.elements;
     for (let element of elements) {
         element.value = '';
     };
-}
+};
 
 
 
